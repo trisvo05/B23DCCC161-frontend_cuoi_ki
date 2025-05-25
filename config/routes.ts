@@ -36,6 +36,23 @@
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
 	},
+	{
+		path: '/admission',
+		name: 'Đăng ký xét tuyển',
+		icon: 'FormOutlined',
+		routes: [
+			{
+				path: '/admission/application',
+				name: 'Đăng ký xét tuyển',
+				component: './Admission/Application',
+			},
+			{
+				path: '/admission/status',
+				name: 'Theo dõi hồ sơ',
+				component: './Admission/Status',
+			}
+		],
+	},
 
 	// DANH MUC HE THONG
 	// {
