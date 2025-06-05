@@ -1,75 +1,83 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Table, Tag, Button, Space, Empty, Modal, Descriptions, Badge } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import './index.less';
 
 interface ApplicationRecord {
-  id: number;
-  school: string;
-  major: string;
   fullName?: string;
-  submissionDate: string;
+  dob: string;
+  address: string;
+  score: number;
+  priorityObject: string;
   status: 'pending' | 'approved' | 'rejected';
 }
 
 const StatusPage: React.FC = () => {
-  // Khởi tạo state để lưu danh sách hồ sơ, mặc định là rỗng
   const [applications, setApplications] = useState<ApplicationRecord[]>([]);
-  // State để quản lý modal hiển thị chi tiết
   const [isModalVisible, setIsModalVisible] = useState(false);
-  // State để lưu hồ sơ đang xem chi tiết
   const [selectedApplication, setSelectedApplication] = useState<ApplicationRecord | null>(null);
 
-  // Đọc dữ liệu từ localStorage khi component được tạo
   useEffect(() => {
-    try {
-      const storedData = localStorage.getItem('admissionApplications');
-      if (storedData) {
-        const parsedData = JSON.parse(storedData);
-        // Chỉ sử dụng dữ liệu từ localStorage nếu có
-        setApplications(parsedData.sort((a: ApplicationRecord, b: ApplicationRecord) => a.id - b.id));
-      } else {
-        // Nếu không có dữ liệu từ localStorage và không có dữ liệu mẫu, hiển thị giao diện trống
-        setApplications([]);
+    const fetchApplications = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/applications');
+        const data = response.data;
+
+        // Lọc dữ liệu, bỏ qua id, createdAt, updatedAt
+        const filteredData: ApplicationRecord[] = data.map((app: any) => ({
+          fullName: app.user?.fullName,
+          dob: app.personalInfo?.dob,
+          address: app.personalInfo?.address,
+          score: app.score,
+          priorityObject: app.priorityObject,
+          status: app.status,
+        }));
+
+        setApplications(filteredData);
+      } catch (error) {
+        console.error('Lỗi khi lấy dữ liệu từ API:', error);
       }
-    } catch (error) {
-      console.error('Error reading from localStorage:', error);
-    }
+    };
+
+    fetchApplications();
   }, []);
 
-  // Hiển thị modal chi tiết khi click vào nút Xem chi tiết
   const showDetailModal = (record: ApplicationRecord) => {
     setSelectedApplication(record);
     setIsModalVisible(true);
   };
 
-  // Đóng modal
   const handleModalClose = () => {
     setIsModalVisible(false);
   };
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-      sorter: (a: ApplicationRecord, b: ApplicationRecord) => a.id - b.id,
-      defaultSortOrder: 'ascend' as 'ascend',
+      title: 'Họ và tên',
+      dataIndex: 'fullName',
+      key: 'fullName',
+      render: (text: string) => text || 'Chưa có thông tin',
     },
     {
-      title: 'Trường',
-      dataIndex: 'school',
-      key: 'school',
+      title: 'Ngày sinh',
+      dataIndex: 'dob',
+      key: 'dob',
     },
     {
-      title: 'Ngành',
-      dataIndex: 'major',
-      key: 'major',
+      title: 'Địa chỉ',
+      dataIndex: 'address',
+      key: 'address',
     },
     {
-      title: 'Ngày nộp',
-      dataIndex: 'submissionDate',
-      key: 'submissionDate',
+      title: 'Điểm xét tuyển',
+      dataIndex: 'score',
+      key: 'score',
+    },
+    {
+      title: 'Đối tượng ưu tiên',
+      dataIndex: 'priorityObject',
+      key: 'priorityObject',
     },
     {
       title: 'Trạng thái',
@@ -78,7 +86,7 @@ const StatusPage: React.FC = () => {
       render: (status: string) => {
         let color = 'default';
         let text = '';
-        
+
         if (status === 'pending') {
           color = 'gold';
           text = 'Chờ duyệt';
@@ -89,7 +97,7 @@ const StatusPage: React.FC = () => {
           color = 'red';
           text = 'Từ chối';
         }
-        
+
         return <Tag color={color}>{text}</Tag>;
       },
     },
@@ -104,7 +112,6 @@ const StatusPage: React.FC = () => {
     },
   ];
 
-  // Chuyển đổi trạng thái thành tên thân thiện hơn
   const getStatusDisplay = (status: string) => {
     switch (status) {
       case 'pending':
@@ -124,13 +131,12 @@ const StatusPage: React.FC = () => {
         <Table 
           columns={columns} 
           dataSource={applications} 
-          rowKey="id"
+          rowKey={(_, index) => (index !== undefined ? index.toString() : Math.random().toString())} // dùng index làm key vì không có id
         />
       ) : (
         <Empty description="Chưa có hồ sơ nào được nộp" />
       )}
 
-      {/* Modal hiển thị chi tiết hồ sơ */}
       <Modal
         title="Chi tiết hồ sơ xét tuyển"
         visible={isModalVisible}
@@ -144,11 +150,11 @@ const StatusPage: React.FC = () => {
       >
         {selectedApplication && (
           <Descriptions bordered column={1}>
-            <Descriptions.Item label="ID hồ sơ">{selectedApplication.id}</Descriptions.Item>
             <Descriptions.Item label="Họ và tên">{selectedApplication.fullName || 'Chưa có thông tin'}</Descriptions.Item>
-            <Descriptions.Item label="Trường đăng ký">{selectedApplication.school}</Descriptions.Item>
-            <Descriptions.Item label="Ngành đăng ký">{selectedApplication.major}</Descriptions.Item>
-            <Descriptions.Item label="Ngày nộp hồ sơ">{selectedApplication.submissionDate}</Descriptions.Item>
+            <Descriptions.Item label="Ngày sinh">{selectedApplication.dob}</Descriptions.Item>
+            <Descriptions.Item label="Địa chỉ">{selectedApplication.address}</Descriptions.Item>
+            <Descriptions.Item label="Điểm xét tuyển">{selectedApplication.score}</Descriptions.Item>
+            <Descriptions.Item label="Đối tượng ưu tiên">{selectedApplication.priorityObject}</Descriptions.Item>
             <Descriptions.Item label="Trạng thái">{getStatusDisplay(selectedApplication.status)}</Descriptions.Item>
             <Descriptions.Item label="Ghi chú">
               {selectedApplication.status === 'pending' ? 'Hồ sơ của bạn đang được xét duyệt, vui lòng chờ kết quả.' :
@@ -162,4 +168,4 @@ const StatusPage: React.FC = () => {
   );
 };
 
-export default StatusPage; 
+export default StatusPage;
