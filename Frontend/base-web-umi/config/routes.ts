@@ -24,17 +24,29 @@
 		component: './TrangChu',
 		icon: 'HomeOutlined',
 	},
+	// {
+	// 	path: '/gioi-thieu',
+	// 	name: 'About',
+	// 	component: './TienIch/GioiThieu',
+	// 	hideInMenu: true,
+	// },
+	// {
+	// 	path: '/random-user',
+	// 	name: 'RandomUser',
+	// 	component: './RandomUser',
+	// 	icon: 'ArrowsAltOutlined',
+	// },
 	{
-		path: '/gioi-thieu',
-		name: 'About',
-		component: './TienIch/GioiThieu',
-		hideInMenu: true,
+    path: '/dashboard',
+    name: 'Quản lý',
+    component: './Dashboard',
+    icon: 'AppstoreOutlined',
 	},
 	{
-		path: '/random-user',
-		name: 'RandomUser',
-		component: './RandomUser',
-		icon: 'ArrowsAltOutlined',
+    path: '/statistics',
+    name: 'Thống kê',
+    component: './Statistics',
+    icon: 'BarChartOutlined',
 	},
 
 	// DANH MUC HE THONG
