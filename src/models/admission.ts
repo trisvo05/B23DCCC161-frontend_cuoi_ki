@@ -1,4 +1,4 @@
-import { Dispatch } from 'umi';
+// import { Dispatch } from 'umi';
 import { message } from 'antd';
 
 export interface ApplicationRecord {

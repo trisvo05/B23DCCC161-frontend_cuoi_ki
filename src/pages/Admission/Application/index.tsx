@@ -5,16 +5,7 @@
   const { Option } = Select;
   const { Title } = Typography;
 
-  interface Major {
-    id: number;
-    name: string;
-  }
 
-  interface SubjectCombination {
-    id: number;
-    code: string;
-    subjects: string;
-  }
 
   const ApplicationPage: React.FC = () => {
     const [form] = Form.useForm();
