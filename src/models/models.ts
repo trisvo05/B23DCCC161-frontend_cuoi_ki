@@ -16,3 +16,15 @@
     priorityObject: string;
     status: 'pending' | 'approved' | 'rejected';
   }
+  type DataStats = {
+      totalApplications?: number;
+      pending?: number;
+      approved?: number;
+      rejected?: number;
+      majorStats?: number;
+      
+    };
+    interface StatusData {
+      name: string;
+      value: number;
+      }

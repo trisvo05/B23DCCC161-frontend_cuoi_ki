@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Card, Statistic, Table, Progress } from 'antd';
+import { Row, Col, Card, Statistic } from 'antd';
 import { UserOutlined, BookOutlined, FileTextOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import {
 	BarChart,
@@ -15,7 +15,7 @@ import {
   Legend,
 } from 'recharts';
 import axios from 'axios';
-import { response } from 'express';
+// import { response } from 'express';
 const COLORS = ['#FFBB28', '#00C49F', '#FF8042'];
 const Dashboard: React.FC = () => {
 	// Mock data for statistics
@@ -27,45 +27,48 @@ const Dashboard: React.FC = () => {
 		{ name: 'ĐH Luật HN', value: 534 },
 	];
 
-	const majorStats = [
-		{ major: 'Công nghệ thông tin', total: 456, approved: 320, percentage: 70 },
-		{ major: 'Kinh tế', total: 380, approved: 266, percentage: 70 },
-		{ major: 'Y khoa', total: 290, approved: 174, percentage: 60 },
-		{ major: 'Luật', total: 220, approved: 154, percentage: 70 },
-		{ major: 'Kỹ thuật', total: 340, approved: 238, percentage: 70 },
-	];
+	// const majorStats = [
+	// 	{ major: 'Công nghệ thông tin', total: 456, approved: 320, percentage: 70 },
+	// 	{ major: 'Kinh tế', total: 380, approved: 266, percentage: 70 },
+	// 	{ major: 'Y khoa', total: 290, approved: 174, percentage: 60 },
+	// 	{ major: 'Luật', total: 220, approved: 154, percentage: 70 },
+	// 	{ major: 'Kỹ thuật', total: 340, approved: 238, percentage: 70 },
+	// ];
 
-	const columns = [
-		{
-			title: 'Ngành học',
-			dataIndex: 'major',
-			key: 'major',
-		},
-		{
-			title: 'Tổng hồ sơ',
-			dataIndex: 'total',
-			key: 'total',
-			align: 'center' as const,
-		},
-		{
-			title: 'Đã duyệt',
-			dataIndex: 'approved',
-			key: 'approved',
-			align: 'center' as const,
-		},
-		{
-			title: 'Tỷ lệ duyệt',
-			dataIndex: 'percentage',
-			key: 'percentage',
-			align: 'center' as const,
-			render: (value: number) => <Progress percent={value} size='small' />,
-		},
-	];
+	// const columns = [
+	// 	{
+	// 		title: 'Ngành học',
+	// 		dataIndex: 'major',
+	// 		key: 'major',
+	// 	},
+	// 	{
+	// 		title: 'Tổng hồ sơ',
+	// 		dataIndex: 'total',
+	// 		key: 'total',
+	// 		align: 'center' as const,
+	// 	},
+	// 	{
+	// 		title: 'Đã duyệt',
+	// 		dataIndex: 'approved',
+	// 		key: 'approved',
+	// 		align: 'center' as const,
+	// 	},
+	// 	{
+	// 		title: 'Tỷ lệ duyệt',
+	// 		dataIndex: 'percentage',
+	// 		key: 'percentage',
+	// 		align: 'center' as const,
+	// 		render: (value: number) => <Progress percent={value} size='small' />,
+	// 	},
+	// ];
 
 	//  get data stats
 	type DataStats = {
 		totalApplications?: number;
-		// add other properties as needed
+		pending?: number;
+		approved?: number;
+		rejected?: number;
+		majorStats?: number;
 	};
 	const [dataStats, setDataStats] = useState<DataStats>({});
   interface StatusData {
