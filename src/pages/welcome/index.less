@@ -1,0 +1,208 @@
+// Styles cho Welcome Page
+
+.welcomeContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+}
+
+.header {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    img {
+      height: 40px;
+    }
+    
+    span {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+}
+
+.content {
+  padding: 0 20px;
+}
+
+.welcomeCard {
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: none;
+  overflow: hidden;
+  
+  .ant-card-body {
+    padding: 48px 40px;
+  }
+}
+
+.cardContent {
+  text-align: center;
+}
+
+.welcomeText {
+  margin-bottom: 40px;
+  
+  .title {
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  
+  .subtitle {
+    color: #1890ff;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+  
+  .description {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+  
+  .loginButton {
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+  
+  .registerButton {
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 2px solid #1890ff;
+    color: #1890ff;
+    
+    &:hover {
+      background: #1890ff;
+      color: white;
+    }
+  }
+}
+
+.features {
+  .feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    
+    .featureIcon {
+      font-size: 24px;
+      color: #1890ff;
+      margin-top: 4px;
+    }
+    
+    h4 {
+      margin-bottom: 4px;
+      color: #1a1a1a;
+    }
+    
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.1);
+  
+  p {
+    margin: 4px 0;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+    
+    .logo span {
+      font-size: 20px;
+    }
+  }
+  
+  .welcomeCard .ant-card-body {
+    padding: 32px 24px;
+  }
+  
+  .welcomeText {
+    .title {
+      font-size: 28px;
+    }
+    
+    .subtitle {
+      font-size: 20px;
+    }
+  }
+  
+  .actions {
+    .loginButton,
+    .registerButton {
+      height: 44px;
+    }
+  }
+  
+  .features .feature {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    padding: 0 16px;
+  }
+  
+  .welcomeCard .ant-card-body {
+    padding: 24px 20px;
+  }
+  
+  .welcomeText {
+    margin-bottom: 32px;
+    
+    .title {
+      font-size: 24px;
+    }
+    
+    .subtitle {
+      font-size: 18px;
+    }
+    
+    .description {
+      font-size: 14px;
+    }
+  }
+  
+  .actions {
+    margin-bottom: 32px;
+  }
+}

@@ -1,0 +1,64 @@
+// Styles cho ForgotPassword Form component
+
+.forgotPasswordContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.forgotPasswordCard {
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  border: none;
+
+  .ant-card-body {
+    padding: 40px;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+
+  h3 {
+    margin-bottom: 8px;
+    color: #1a1a1a;
+  }
+}
+
+.backToLogin {
+  text-align: center;
+  margin-top: 24px;
+}
+
+// Success screen adjustments
+.ant-result {
+  padding: 20px 0;
+
+  .ant-result-title {
+    color: #1a1a1a;
+  }
+
+  .ant-result-subtitle {
+    text-align: center;
+    line-height: 1.6;
+  }
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .forgotPasswordContainer {
+    padding: 16px;
+  }
+  
+  .forgotPasswordCard {
+    .ant-card-body {
+      padding: 24px;
+    }
+  }
+}

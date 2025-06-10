@@ -1,32 +1,35 @@
-import { HomeOutlined } from '@ant-design/icons';
-import { Button, Result, Spin } from 'antd';
-import { useModel } from 'umi';
+// src/pages/exception/403/index.tsx
 
-const NotAccessible = () => {
-	const { initialState } = useModel('@@initialState');
+import React from 'react';
+import { Result, Button } from 'antd';
+import { history } from 'umi';
 
-	if (initialState?.permissionLoading)
-		return (
-			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 32, marginBottom: 32 }}>
-				<Spin spinning />
-				<div>Loading...</div>
-			</div>
-		);
-	return (
-		<Result
-			status='403'
-			title='Truy cập bị từ chối'
-			style={{
-				background: 'none',
-			}}
-			subTitle='Xin lỗi, bạn không có quyền truy cập trang này.'
-			extra={
-				<Button type='primary' icon={<HomeOutlined />} onClick={() => (window.location.href = '/')}>
-					Về trang chủ
-				</Button>
-			}
-		/>
-	);
+const ForbiddenPage: React.FC = () => {
+  const handleBackHome = () => {
+    history.push('/');
+  };
+
+  const handleBackLogin = () => {
+    history.push('/auth/login');
+  };
+
+  return (
+    <Result
+      status="403"
+      title="403"
+      subTitle="Xin lỗi, bạn không có quyền truy cập trang này."
+      extra={
+        <div>
+          <Button type="primary" onClick={handleBackHome}>
+            Về trang chủ
+          </Button>
+          <Button style={{ marginLeft: 8 }} onClick={handleBackLogin}>
+            Đăng nhập lại
+          </Button>
+        </div>
+      }
+    />
+  );
 };
 
-export default NotAccessible;
+export default ForbiddenPage;
