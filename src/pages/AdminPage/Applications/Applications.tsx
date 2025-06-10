@@ -208,7 +208,7 @@ const handleStatusChange = async (applicationId: number, newStatus: string) => {
               <Descriptions.Item label="Trường">{selectedApplication.school}</Descriptions.Item>
               <Descriptions.Item label="Ngành">{selectedApplication.major}</Descriptions.Item>
               <Descriptions.Item label="Đợt xét tuyển">{selectedApplication.batch}</Descriptions.Item>
-              <Descriptions.Item label="Điểm GPA">{selectedApplication.gpa}</Descriptions.Item>
+              <Descriptions.Item label="Tổng điểm">{selectedApplication.gpa}</Descriptions.Item>
               <Descriptions.Item label="Ngày nộp">{selectedApplication.submittedDate}</Descriptions.Item>
             </Descriptions>
 
