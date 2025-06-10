@@ -53,6 +53,31 @@
 			}
 		],
 	},
+	{
+		path: '/admin',
+		name: 'Admin Page',
+		icon: 'FormOutlined',
+		routes: [
+			{
+				path: '/admin/dashboard',
+				name: 'Dashboard',
+				component: './AdminPage/Dashboard/Dashboard',
+			},
+			{
+				path: '/admin/management',
+				name: 'Quản lý chung ',
+				component: './AdminPage/Management/Management',
+			},
+			{
+				path: '/admin/applications',
+				name: 'Quản lý hồ sơ ',
+				component: './AdminPage/Applications/Applications',
+			},
+
+		],
+	},
+	
+
 
 	// DANH MUC HE THONG
 	// {
