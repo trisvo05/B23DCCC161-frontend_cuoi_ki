@@ -142,7 +142,7 @@
     "typescript": "^4.2.2"
   },
   "engines": {
-    "node": "18.x"
+    "node": "16.x"
   },
   "gitHooks": {
     "commit-msg": "fabric verify-commit"
