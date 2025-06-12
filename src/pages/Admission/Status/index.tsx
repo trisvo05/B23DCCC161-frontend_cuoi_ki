@@ -4,14 +4,7 @@ import { Table, Tag, Button, Space, Empty, Modal, Descriptions, Badge } from 'an
 import { PageContainer } from '@ant-design/pro-layout';
 import './index.less';
 
-interface ApplicationRecord {
-  fullName?: string;
-  dob: string;
-  address: string;
-  score: number;
-  priorityObject: string;
-  status: 'pending' | 'approved' | 'rejected';
-}
+
 
 const StatusPage: React.FC = () => {
   const [applications, setApplications] = useState<ApplicationRecord[]>([]);
@@ -21,7 +14,7 @@ const StatusPage: React.FC = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/applications');
+        const response = await axios.get('https://b23dccc161-backend-cuoi-ki.onrender.com/applications');
         const data = response.data;
 
         // Lọc dữ liệu, bỏ qua id, createdAt, updatedAt

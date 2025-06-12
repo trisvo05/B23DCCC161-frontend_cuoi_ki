@@ -5,21 +5,7 @@ import axios from 'axios';
 
 const { Option } = Select;
 
-type Application = {
-  id: number;
-  studentName: string;
-  studentId: string;
-  school: string;
-  major: string;
-  batch: string;
-  status: string;
-  submittedDate: string;
-  phone: string;
-  email: string;
-  address: string;
-  gpa: number;
-  documents: { name: string; url: string }[];
-};
+
 
 const Applications: React.FC = () => {
   const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
@@ -29,7 +15,7 @@ const Applications: React.FC = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/applications');
+        const response = await axios.get('https://b23dccc161-backend-cuoi-ki.onrender.com/applications');
         const formattedData = response.data.map((item: any) => ({
           id: item.id,
           studentName: item.user?.fullName || 'N/A',
@@ -49,6 +35,7 @@ const Applications: React.FC = () => {
           })) || [],
         }));
         setApplications(formattedData);
+        // console.log('Dữ liệu hồ sơ:', formattedData);
       } catch (error) {
         console.error('Lỗi khi tải dữ liệu:', error);
         message.error('Không thể tải danh sách hồ sơ.');
@@ -73,7 +60,7 @@ const Applications: React.FC = () => {
 const handleStatusChange = async (applicationId: number, newStatus: string) => {
   try {
     // Gửi yêu cầu cập nhật trạng thái tới backend
-    await axios.patch(`http://localhost:3000/applications/${applicationId}`, {
+    await axios.patch(`https://b23dccc161-backend-cuoi-ki.onrender.com/applications/${applicationId}`, {
       status: newStatus,
     });
 

@@ -30,12 +30,18 @@
 		component: './TienIch/GioiThieu',
 		hideInMenu: true,
 	},
-	// {
-	// 	path: '/random-user',
-	// 	name: 'RandomUser',
-	// 	component: './RandomUser',
-	// 	icon: 'ArrowsAltOutlined',
-	// },
+	{
+		path: '/trangchu',
+		name: 'Trang chủ',
+		component: './RandomUser',
+		icon: 'ArrowsAltOutlined',
+	},
+	{
+		path: '/gioithieugioithieu',
+		name: 'Giới thiệu',
+		component: './RandomUser',
+		icon: 'ArrowsAltOutlined',
+	},
 	{
 		path: '/admission',
 		name: 'User Page',

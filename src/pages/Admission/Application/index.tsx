@@ -14,14 +14,14 @@
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-      axios.get('http://localhost:3000/majors').then((res) => {
+      axios.get('https://b23dccc161-backend-cuoi-ki.onrender.com/majors').then((res) => {
         setMajors(res.data);
       });
     }, []);
 
     const onMajorChange = (majorId: number) => {
       form.setFieldsValue({ combinationId: undefined });
-      axios.get(`http://localhost:3000/majors-combinations/${majorId}`).then((res) => {
+      axios.get(`https://b23dccc161-backend-cuoi-ki.onrender.com/majors-combinations/${majorId}`).then((res) => {
         setCombinations([res.data.combination]);
         console.log([res.data.combination]);
       });
@@ -45,7 +45,7 @@
 
       try {
         setLoading(true);
-        await axios.post('http://localhost:3000/applications', payload);
+        await axios.post('https://b23dccc161-backend-cuoi-ki.onrender.com/applications', payload);
         message.success('Nộp hồ sơ thành công!');
         form.resetFields();
         setCombinations([]);

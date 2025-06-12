@@ -33,9 +33,9 @@ const Management: React.FC = () => {
   const [subjectGroups, setSubjectGroups] = useState<any[]>([]);
 
   const API_MAP: any = {
-    schools: 'http://localhost:3000/schools',
-    majors: 'http://localhost:3000/majors',
-    subjectGroups: 'http://localhost:3000/subjectcombinations',
+    schools: 'https://b23dccc161-backend-cuoi-ki.onrender.com/schools',
+    majors: 'https://b23dccc161-backend-cuoi-ki.onrender.com/majors',
+    subjectGroups: 'https://b23dccc161-backend-cuoi-ki.onrender.com/subjectcombinations',
   };
 
   const fetchData = async () => {
